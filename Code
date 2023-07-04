@@ -1,6 +1,8 @@
 var dice1;
 var dice2;
-
+let endGame;
+let username1Wins = 0;
+let username2Wins = 0;
 var username1 = prompt("Player 1, what is your name?");
 var username2 = prompt("Player 2, what is your name?");
 let dicevalue1;
@@ -8,76 +10,83 @@ let dicevalue2;
 
 function setup() {
   createCanvas(400, 400);
-  dice1 = new DiceA(150,  40,  110);  
-  dice2 = new DiceB(150, 250, 110);
+  
+  dice1 = new DiceA(150,  40,  110,10);  
+  dice2 = new DiceB(150, 250, 110,10);
+   dice3 = square(150,  40,  120,10);
+  endgame = false;
 }
 
 function draw() {
-  background(400);
+  background(50);
   strokeWeight(5);
+  fill(400,100,400);
   dice1.draw();
   dice2.draw();
   score1(205,95,1);
   score2(205,305,1);
- 
 }
+
+
 
 //First Dice class
 class DiceA{
-  constructor(xPos, yPos, size, diceName, button){
+  constructor(xPos, yPos, size, diceName,corner, button){
     this.xPos = xPos;
     this.yPos = yPos;
     this.size = size;
+    this.corner = corner;
     this.diceName = diceName;
-    this.diceValue = 1;
+    this.diceValue = 0;
     this.button = createButton(username1);
     this.button.mousePressed(this.roll);}
+  
   
 
 
 draw(){
   square(this.xPos,this.yPos,this.size);
-  this.button.position(this.xPos, this.yPos + this.size);}
+  this.button.position(this.xPos+30, this.yPos + this.size);}
 
   roll(){
   this.diceValue = floor(random(1,7));
     this.diceName = username1;
   dicevalue1 = this.diceValue;
   console.log(`${this.diceName} rolled a ${dicevalue1}`);}
-  
 }
 
-//Dice Scores
+//Dice Scores for dice 1
 function score1(pointX,pointY,roll) {
   strokeWeight(15);
-if(dicevalue1 === 1) {
+  
+   if(this.diceValue ===undefined){
+    text ("Click buttons to roll.The highest roll wins, good luck!",23,20)
+  textSize(16);
+}
+else if(dicevalue1 === 1) {
   point1= point(pointX,pointY)}
   
   if(dicevalue1 === 2) 
   {point1= point(pointX+35,pointY)
-  point2 = point(pointX-35,pointY)
-  }
+  point2 = point(pointX-35,pointY)}
 
  if(dicevalue1 === 3)
    {point1 = point(pointX+35,pointY)
   point2 = point(pointX-35,pointY)
-  point3 = point(pointX,pointY);
-   }
+  point3 = point(pointX,pointY);}
   
   if(dicevalue1 === 4)
-  {point1 = point(pointX-25,pointY-25);
-  point2 = point(pointX-25,pointY+25);
+  {point1 = point(pointX-30,pointY-25);
+  point2 = point(pointX-30,pointY+25);
   point3 = point(pointX+30,pointY-25);
-  point4 = point(pointX+30,pointY+25);
-  }
+  point4 = point(pointX+30,pointY+25);}
   
    if(dicevalue1 === 5)
   { point1 = point(pointX-30,pointY-25);
   point2 = point(pointX-30,pointY+25);
   point3 = point(pointX+30,pointY-25);
   point4 = point(pointX+30,pointY+25);
-  point5 = point(pointX,pointY)
-  }
+  point5 = point(pointX,pointY)}
   
   if(dicevalue1 === 6)
   {point1 = point(pointX-30,pointY-25);
@@ -85,15 +94,19 @@ if(dicevalue1 === 1) {
   point3 = point(pointX+30,pointY-25);
   point4 = point(pointX+30,pointY+25);
   point5 = point(pointX-30,pointY);
-    point6 = point(pointX+30,pointY);
-  }
-}
+    point6 = point(pointX+30,pointY);}
+  
+  if (dicevalue1>dicevalue2)
+  {text (username1 + ` Wins this round!`,110,210);
+  textSize(16)}
+endgame = true}
 
 
 
 
+/* Dice 2
 
-//--------------------------------------------------------------
+*/
 
 class DiceB{
   constructor(xPos, yPos, size, diceName, button){
@@ -109,7 +122,7 @@ class DiceB{
 
 draw(){
   square(this.xPos,this.yPos,this.size);
-  this.button.position(this.xPos, this.yPos + this.size);}
+  this.button.position(this.xPos+30, this.yPos + this.size);}
 
   roll(){
   this.diceValue = floor(random(1,7));
@@ -137,8 +150,8 @@ if(dicevalue2 === 1) {
    }
   
   if(dicevalue2 === 4)
-  {point1 = point(pointX-25,pointY-25);
-  point2 = point(pointX-25,pointY+25);
+  {point1 = point(pointX-30,pointY-25);
+  point2 = point(pointX-30,pointY+25);
   point3 = point(pointX+30,pointY-25);
   point4 = point(pointX+30,pointY+25);
   }
@@ -157,11 +170,19 @@ if(dicevalue2 === 1) {
   point3 = point(pointX+30,pointY-25);
   point4 = point(pointX+30,pointY+25);
   point5 = point(pointX-30,pointY);
-    point6 = point(pointX+30,pointY);
-  }
+    point6 = point(pointX+30,pointY);}
+  
+  
+  
+  if (dicevalue2>dicevalue1)
+  {text 
+  (username2 + ` Wins this round!`,110,210)
+   textSize(16)
+  
+   endgame = true;
+   
 }
-
-
+}
 
 
 
