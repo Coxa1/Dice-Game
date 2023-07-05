@@ -1,0 +1,93 @@
+var dice1;
+var dice2;
+
+function setup() {
+  createCanvas(400, 400);
+  dice1 = new Dice(40, 40, 80, "Adam");
+  dice2 = new Dice(280, 40, 80, "Holly");
+  dice3 = new Dice(40,280,80,"Dag");
+  dice4 = new Dice(280,280,80,"Fin");
+}
+
+function draw() {
+  background(220);
+  dice1.draw();
+  dice2.draw();
+  dice3.draw();
+  dice4.draw();
+
+}
+
+class Dice{
+
+  constructor(xPos, yPos, size, diceName){
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.size = size;
+    this.diceName = diceName;
+    this.dotSize = size * 0.2;
+
+    this.button = createButton(this.diceName);
+
+    this.button.mousePressed(()=>{
+          this.diceValue = floor(random(1,7));
+          console.log(`${this.diceName} rolled a ${this.diceValue}`);
+    }); 
+    this.button.position(this.xPos, this.yPos + (this.size + 10)); 
+  }
+
+  
+ draw(){
+    strokeWeight(this.dotSize * 0.3);
+    rect(this.xPos, this.yPos, this.size, this.size , 20, 20);
+//---------------1
+    if(this.diceValue === 1){
+      strokeWeight(this.dotSize);
+      point(this.xPos + (this.size * 0.5), this.yPos + (this.size * 0.5));
+    }
+   //------------2
+   if(this.diceValue === 2){
+      strokeWeight(this.dotSize);
+      point(this.xPos-20 + (this.size * 0.5), this.yPos + (this.size * 0.5));
+     point(this.xPos+20 + (this.size * 0.5), this.yPos + (this.size * 0.5));
+    }
+   //------------3
+   if(this.diceValue === 3){
+      strokeWeight(this.dotSize);
+      point(this.xPos-20 + (this.size * 0.5), this.yPos + (this.size * 0.5));
+     point(this.xPos+20 + (this.size * 0.5), this.yPos + (this.size * 0.5));
+     point(this.xPos + (this.size * 0.5), this.yPos + (this.size * 0.5));}
+     //----------4
+     if(this.diceValue === 4){
+      strokeWeight(this.dotSize);
+      point(this.xPos-18 + (this.size * 0.5), this.yPos+18 + (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos+18 + (this.size * 0.5));
+       point(this.xPos-18 + (this.size * 0.5), this.yPos-18 + (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos-18 + (this.size * 0.5));}
+    //-----------5
+   if(this.diceValue === 5){
+      strokeWeight(this.dotSize);
+      point(this.xPos-18 + (this.size * 0.5), this.yPos+18 + (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos+18 + (this.size * 0.5));
+       point(this.xPos-18 + (this.size * 0.5), this.yPos-18 + (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos-18 + (this.size * 0.5));
+   point(this.xPos + (this.size * 0.5), this.yPos + (this.size * 0.5));}
+ //-------------6
+   if(this.diceValue === 6){
+      strokeWeight(this.dotSize);
+      point(this.xPos-18 + (this.size * 0.5), this.yPos+18 + (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos+18 + (this.size * 0.5));
+       point(this.xPos-18 + (this.size * 0.5), this.yPos-18 + (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos-18 + (this.size * 0.5));
+  point(this.xPos-18 + (this.size * 0.5), this.yPos+  (this.size * 0.5));
+     point(this.xPos+18 + (this.size * 0.5), this.yPos + (this.size * 0.5));}}
+
+  
+  
+  
+  
+  toString(){
+    return(`xPos: ${this.xPos}, yPos: ${this.yPos}, name: ${this.diceName}`);
+  }
+
+}
