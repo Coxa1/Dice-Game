@@ -31,8 +31,9 @@ class Dice{
 
     this.button.mousePressed(()=>{
           this.diceValue = floor(random(1,7));
-          console.log(`${this.diceName} rolled a ${this.diceValue}`);
-    }); 
+          console.log(`${this.diceName} rolled a ${this.diceValue}`); this.score = this.diceValue
+      console.log(this.score);
+    }) 
     this.button.position(this.xPos, this.yPos + (this.size + 10)); 
   }
 
