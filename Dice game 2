@@ -1,12 +1,13 @@
 var dice1;
 var dice2;
 
+
 function setup() {
   createCanvas(400, 400);
-  dice1 = new Dice(40, 40, 80, "Adam");
-  dice2 = new Dice(280, 40, 80, "Holly");
-  dice3 = new Dice(40,280,80,"Dag");
-  dice4 = new Dice(280,280,80,"Fin");
+  dice1 = new Dice(40, 40, 80, "Player1");
+  dice2 = new Dice(280, 40, 80, "Player2");
+  dice3 = new Dice(40,280,80,"");
+  dice4 = new Dice(280,280,80,"");
 }
 
 function draw() {
@@ -83,12 +84,5 @@ class Dice{
   point(this.xPos-18 + (this.size * 0.5), this.yPos+  (this.size * 0.5));
      point(this.xPos+18 + (this.size * 0.5), this.yPos + (this.size * 0.5));}}
 
-  
-  
-  
-  
-  toString(){
-    return(`xPos: ${this.xPos}, yPos: ${this.yPos}, name: ${this.diceName}`);
-  }
-
+  //this is the code i want to impliment, let score1 = (dice1(this.diceValue)); but it keeps crashing
 }
